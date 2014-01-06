@@ -1,0 +1,112 @@
+<!--Markdown Helper-->
+<div class="modal fade" id="markdown_helper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="left:auto;right:auto;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Markdown Helper</h4>
+        </div>
+        <div class="modal-body">
+          <!--Markdown Helper Table-->
+          <table class="table table-striped table-condensed">
+            <col width="50%">
+            <col width="50%">
+            <thead>
+              <tr>
+                <th>Result</th>
+                <th>Markdown</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= markdown('*Italics*')%></td>
+                <td>*Italics*</td>
+              </tr>
+              <tr>
+                <td><%= markdown('_Emphasize_')%></td>
+                <td>_Emphasize_</td>
+              </tr>
+              <tr>
+                <td><%= markdown('**Bold**')%></td>
+                <td>**Bold**</td>
+              </tr>
+              <tr>
+                <td><%= markdown('__Emphasize__')%></td>
+                <td>__Emphasize__</td>
+              </tr>
+              <tr>
+                <td><%= markdown('`Code`')%></td>
+                <td>`Code`</td>
+              </tr>
+              <tr>
+                <td><%= markdown('~~Strike Through~~')%></td>
+                <td>~~Strike Through~~</td>
+              </tr>
+              <tr>
+                <td><%= markdown('[Link](http://google.com "Google")')%></td>
+                <td>[Title](http:// "Hover")</td>
+              </tr>
+              <tr>
+                <td>Image</td>
+                <td>![alt text](http:// "Hover")</td>
+              </tr>
+              <tr>
+                <td>Unordered Lists</td>
+                <td>* item</td>
+              </tr>
+              <tr>
+                <td>Ordered Lists</td>
+                <td>1. item</td>
+              </tr>
+              <tr>
+                <td>Blockquote</td>
+                <td>> quote</td>
+              </tr>
+              <tr>
+                <td>Horizontial Line</td>
+                <td>---</td>
+              </tr>
+              <tr>
+                <td>Horizontial Line</td>
+                <td>***</td>
+              </tr>
+              <tr>
+                <td>H1</td>
+                <td># H1</td>
+              </tr>
+              <tr>
+                <td>H2</td>
+                <td>## H2</td>
+              </tr>
+              <tr>
+                <td>H3</td>
+                <td>### H3</td>
+              </tr>
+              <tr>
+                <td>H4</td>
+                <td>#### H4</td>
+              </tr>
+              <tr>
+                <td>H5</td>
+                <td>##### H5</td>
+              </tr>
+              <tr>
+                <td>H6</td>
+                <td>###### H6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+$(document).keydown(function(evt){
+  if (evt.keyCode==77 && (evt.ctrlKey)){
+    // Toggle modal popup
+    $('#markdown_helper').modal('toggle');
+    evt.preventDefault();
+  }
+});
+</script>

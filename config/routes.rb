@@ -1,5 +1,14 @@
 InvictusSiteV2::Application.routes.draw do
-  devise_for :users
+
+  # Send devise to our
+  devise_for :users, :controllers => {
+    registrations: "users/registrations", 
+    passwords: "users/passwords", 
+  }
+
+  # Users
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

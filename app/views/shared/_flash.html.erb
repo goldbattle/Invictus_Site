@@ -1,0 +1,19 @@
+<%-# If there are erros then display them -%>
+<% if flash.any? %>
+  <%-# Get the "key" this can be {danger,success,warning,etc} -%>
+  <% flash.each do |key, value| %>
+    <% 
+    if key == :alert
+      key = "danger"
+    elsif key == notice
+      key = "success"
+    end
+    %>
+    <div style="padding-top:20px">
+      <div class="alert alert-<%= key %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= value %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

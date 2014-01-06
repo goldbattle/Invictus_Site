@@ -17,5 +17,18 @@
 @import url("http://fonts.googleapis.com/css?family=Telex");
 
 body {
-  padding: 10px 30px;
+  //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Telex', sans-serif;
+  padding-top: 50px;
+  height: 100%;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
