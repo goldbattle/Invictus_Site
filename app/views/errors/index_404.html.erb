@@ -1,0 +1,15 @@
+<% provide(:title, "404") %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container" style="padding-top:40px">
+  <div class="well" style="padding-bottom:0px">
+  	<div class="jumbotron">
+  	  <h1 style="text-align:center">**Error**</h1>
+  	  <p style="text-align:center">Looks like you hit a 404 error. Press that back button or go to our homepage to start over.</p>
+  	  <p style="text-align:center"><%= link_to("Homepage »", root_path, class: "btn btn-lg btn-primary") %></p>
+  	</div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

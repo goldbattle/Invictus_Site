@@ -13,7 +13,7 @@
 
     <%= simple_form_for resource, :url => confirmation_path(resource_name), :html => { :method => :post } do |f| %>
 
-      <%= f.input :email, :required => true, :autofocus => true, input_html: { class: "form-control" } %>
+      <%= f.input :email, :autofocus => true, input_html: { class: "form-control" } %>
       <%= f.button :submit, 'Resend Instructions', class: 'btn btn-primary', :disable_with=>"Submitting", style: "width:100%;margin-top:15px" %>
 
     <% end %>
@@ -37,4 +37,4 @@
   </div>
 </div>
 
-<%= render 'shared/footer' %>
+<%= render 'shared/footer' %><p>

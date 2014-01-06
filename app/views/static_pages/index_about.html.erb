@@ -1,0 +1,106 @@
+<% provide(:title, 'About Us') %>
+
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="page-header">
+    <h2>About Us</h2>
+  </div>
+
+  <%= render "shared/flash" %>
+
+  <blockquote>
+    <p>Invictus is the unconquerable passion for expanding our texturing and coding experience in a friendly environment. As we work towards a refined Minecraft aesthetic we use the guidance of the artistry of Soar49, the creator of Soartex and inspiration for our work.</p>
+    <small>Invictus Mission</small>
+  </blockquote>
+
+  <blockquote>
+    <p>Please do not redistribute our hard work without permission.</p>
+    <small>Invictus License</small>
+  </blockquote>
+
+  <div class="row" style="padding-top:20px;padding-bottom:30px;">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 1px 10px">
+          <h4>
+            <%= gravatar_for(User.find_by_username("Shoeboxam"), size: 30 ) %> 
+            Shoeboxam
+          </h4>
+        </div>
+        <div class="panel-body">
+          In October 2010 Soar49 opened his work to the public, spawning a continuation project I would assist in founding and ultimately lead for the next two years. The Fanver community would go on to show me about the depths of Gimp, a tool I never knew had so many functions. Over the past six months I began to feel a need to redefine and remake the entirety of the continuation to create my own interpretation. 
+          <br><br>
+          If you'd like to chat with me or watch my work, I stream on Twitch.tv as Shoeboxama.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 1px 10px">
+          <h4>
+            <%= gravatar_for(User.find_by_username("GoldBattle"), size: 30 ) %> 
+            GoldBattle
+          </h4>
+        </div>
+        <div class="panel-body">
+          About a half a year after Shoeboxam got involved in Soartex Fanver, I stumbled upon the pack. Through hard work and dedication I became in charge of all the back end operations. Over the past four months I felt the need to creating a completely new pack from scratch. In doing so I want to continue to gather and developed knowledge of the vast area of computer science, art and technology. Along the road, I continue to explore new areas and gather new knowledge of things I could never dream of. 
+          <br><br>
+          On Github.com I go as Goldbattle
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="padding-bottom:30px">
+    <div class="col-md-2">
+      <div class="thumbnail text-center" style="min-height:180px">
+        <h4>Our Tools</h4>
+        <p>We use many tools to support Invictus, these are some that we use everyday.</p>
+      </div>
+      
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail" style="min-height:180px">
+        <%= image_tag "about/logo_gimp.png", :class=>"img-responsive", style: "width:100px" %>
+        <div class="caption" style="text-align:center;">
+          <p>Gimp GNU Image Manipulator</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail" style="min-height:180px">
+        <%= image_tag "about/logo_github.png", :class=>"img-responsive", style: "width:100px" %>
+        <div class="caption" style="text-align:center;">
+          <p>Github<br>(revision control)</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail" style="min-height:180px">
+        <%= image_tag "about/logo_sync.png", :class=>"img-responsive", style: "width:100px" %>
+        <div class="caption" style="text-align:center;">
+          <p>SyncToy<br>(client file syncing)</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail" style="min-height:180px">
+        <%= image_tag "about/logo_rails.png", :class=>"img-responsive", style: "width:100px" %>
+        <div class="caption" style="text-align:center;">
+          <p>Ruby on Rails<br>(framework)</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail" style="min-height:180px">
+        <%= image_tag "about/logo_subline.png", :class=>"img-responsive", style: "width:100px" %>
+        <div class="caption" style="text-align:center;">
+          <p>Subline Text 3<br>(text editor)</p>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<%= render 'shared/footer' %>

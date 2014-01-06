@@ -1,0 +1,57 @@
+<% if @data.nil? || @data.first.include?('message') %>
+  <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Oh no!</strong> We were unable to pull the data from Github. Check back later!
+  </div>
+<% else %>
+  <table class="table table-bordered">
+    <col width="5%">
+    <col width="5%">
+    <col width="15%">
+    <col width="59%">
+    <col width="16%">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Commit</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 0 %>
+      <% @data.each do |item| %>
+      <tr>
+      <td><%= count +=1 %> </td>
+      <td><%= item['sha'][0..5] %></td>
+      <td>
+        <a href="<%= item['author']['html_url'] %>">
+          <%= item['commit']['author']['name'] %>
+        </a>
+      </td>
+      <td>
+        <% if(item['commit']['message'].split(/\n/).length > 1) %>
+          <% # Add popup if there is info %>
+          <% (message = item['commit']['message'].split(/\n/)).delete("") %>
+          <% # Print main message %>
+          <%= message.shift %>
+          <% # Insert popup %>
+          <span style="padding-left:5px">
+            <a class="comments" data-toggle="popover" data-content="<%= message.to_sentence({words_connector: '<br>', two_words_connector: '<br>', last_word_connector: '<br>'}) %>" data-original-title="Commit Message Info"> ... </a>
+          </span>
+        <% else %>
+          <% # Print the message %>
+          <%= item['commit']['message'] %>
+        <% end %>
+      </td>
+      <td>
+        <span class="commitdate" data-toggle="tooltip" title="<%= Time.parse(item['commit']['author']['date']).getlocal.strftime("%m/%d/%Y at %I:%M %P") %>">
+          <%= time_ago_in_words(Time.parse(item['commit']['author']['date']).getlocal) %> ago
+        </span>
+      </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

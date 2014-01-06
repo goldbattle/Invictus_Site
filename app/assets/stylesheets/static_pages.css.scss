@@ -1,0 +1,37 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.carousel {
+  height:500px;
+}
+
+.item, .active, .carousel-inner {
+  height:100%;
+}
+
+#myCarousel {
+  -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+// Commit comment ... button
+.comments {
+  padding: 0px 6px;
+  line-height: 5px;
+  height: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 1px solid #1c1e22;
+  background: #272b30;
+  display: inline-block;
+  text-decoration: none;
+}
+
+// On hover darken and do not underline link
+.comments:hover {
+  text-decoration: none;
+  background: #1c1e22;
+}
+

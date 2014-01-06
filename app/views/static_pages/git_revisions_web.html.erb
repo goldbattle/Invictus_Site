@@ -1,0 +1,29 @@
+<% provide(:title, 'Revisions') %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Revisions</h2>
+  </div>
+
+  <%= render "shared/flash" %>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="">Web</a></li>
+    <li><%= link_to "Vanilla", revisions_vanilla_path %></li>
+    <li><%= link_to "Modded", revisions_modded_path %></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane fade in active" style="padding-top:30px">
+      <!--Main Table-->
+      <%= render 'revisions_table' %>
+    </div>
+  </div>
+
+</div>
+
+<%= render 'shared/footer' %>
