@@ -15,7 +15,7 @@
 
       <%= f.input :email, :autofocus => true, input_html: { class: "form-control" } %>
       <%= f.input :password, input_html: { class: "form-control" } %>
-      <%= f.input :remember_me, :as => :boolean, inline_label: true, label_html: { style: "padding-left:5px;" } %>
+      <%= f.input :remember_me, :as => :boolean, inline_label: true %>
       <%= f.button :submit, "Sign in", class: 'btn btn-primary', :disable_with=>"Submitting", style: "width:100%" %>
 
     <% end %>
