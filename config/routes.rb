@@ -8,13 +8,10 @@ InvictusSiteV2::Application.routes.draw do
   match '/revisions/modded', to: 'static_pages#git_revisions_modded', via: 'get'
   match '/downloads', to: 'static_pages#index_downloads', via: 'get'
   match '/about', to: 'static_pages#index_about', via: 'get'
-  # Send devise to our controller
-  devise_for :users, :controllers => {
-    registrations: "users/registrations", 
-    passwords: "users/passwords", 
-  }
+  # Devise
+  devise_for :users
   # Users
-  resources :users
+  resources :users, only: [:index, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

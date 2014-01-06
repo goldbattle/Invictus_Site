@@ -5,4 +5,26 @@ class User < ActiveRecord::Base
   validates(:username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 5, maximum: 20 })
   # Email subscriptions
   validates :is_subscribed, inclusion: [true, false]
+
+  # Upgrading from a legacy account
+  def valid_password?(password)
+    if self.legacy_password_hash.present?
+      if BCrypt::Password.new(self.legacy_password_hash) == password
+        self.password = password
+        self.legacy_password_hash = nil
+        self.save!
+        true
+      else
+        false
+      end
+    else
+      super
+    end
+  end
+
+  # Upgrading from a legacy account
+  def reset_password!(*args)
+    self.legacy_password_hash = nil
+    super
+  end
 end

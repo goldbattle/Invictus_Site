@@ -19,7 +19,6 @@
         <th>Email</th>
         <th>Actions</th>
         <th>Date Created</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -28,12 +27,8 @@
           <td><%= gravatar_for user, size: 25 %></td>
           <td><%= user.username %></td>
           <td><%= user.email %></td>
-          <td><%= link_to "edit", edit_user_path(user) %></td>
+          <td><%= link_to "Edit", edit_user_path(user) %> | Role</td>
           <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
-          <td>
-            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-sm btn-primary" type="button">Change role</a>
-            <%= render user %>
-          </td>
           </li>
         </tr>
       <% end %>
