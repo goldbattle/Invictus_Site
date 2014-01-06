@@ -38,7 +38,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     
     b.use :label_input
-    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
  
@@ -50,7 +50,7 @@ SimpleForm.setup do |config|
     prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
         prepend.use :input
       end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+      input.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
   end
@@ -63,7 +63,7 @@ SimpleForm.setup do |config|
         prepend.use :input
     prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
       end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+      input.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
   end

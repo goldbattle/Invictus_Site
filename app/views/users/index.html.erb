@@ -1,28 +1,47 @@
-<h3>Users</h3>
-<div class="span8">
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Registered</th>
-      <th>Role</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.email %></td>
-      <td><%= user.created_at.to_date %></td>
-      <td><%= user.roles.join(', ').titleize unless user.roles.first.nil? %></td>
-      <td>
-        <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-primary" type="button">Change role</a>
-        <%= render user %>
-      </td>
-      <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<% provide(:title, "User List") %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Users</h2>
+  </div>
+
+  <%= render "shared/flash" %>
+
+  <%= will_paginate @user, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>
+
+  <table class='table table-hover table-bordered'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+        <th>Date Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= gravatar_for user, size: 25 %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to "edit", edit_user_path(user) %></td>
+          <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
+          <td>
+            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-sm btn-primary" type="button">Change role</a>
+            <%= render user %>
+          </td>
+          </li>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @user, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>
+
 </div>
+
+<%= render 'shared/footer' %>

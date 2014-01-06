@@ -1,0 +1,30 @@
+<% provide(:title, "Edit "+@user.username) %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="page-header">
+    <h2><%= gravatar_for @user, size:35 %> <%= @user.username %> Profile</h2>
+  </div>
+  
+  <div class="row">
+    <%= simple_form_for(@user, :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
+      <div class="col-md-3 col-md-offset-1">
+
+        <%= render "shared/flash" %>
+
+        <%= f.input :username, :required => true %>
+        <%= f.input :email, :required => true  %>
+        <%= f.input :is_subscribed, :as => :select, :include_blank => false, label: "Email Updates"%>
+
+        <%= f.button :submit, 'Update Account', class: 'btn btn-success', style: 'width:100%' %>
+
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

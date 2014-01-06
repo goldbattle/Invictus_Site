@@ -1,17 +1,41 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% provide(:title, "Edit "+@user.username) %>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
+<%= render 'shared/navbar' %>
 
-  <%= f.input :email, :required => true %>
+<div class="container">
+  <div class="page-header">
+    <h2><%= gravatar_for @user, size:35 %> <%= @user.username %> Profile</h2>
+  </div>
+  
+  <div class="row">
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
+      <div class="col-md-3 col-md-offset-1">
 
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+        <%= render "shared/flash" %>
+        <%= f.input :username, :required => true %>
+        <%= f.input :email, :required => true  %>
+        <%= f.input :is_subscribed, :as => :select, :include_blank => false, label: "Email Updates"%>
 
-  <%= f.button :submit, 'Update', :class => 'btn btn-primary' %>
+        <%= f.input :password, :required => false, :autocomplete => "off" %>
+        <%= f.input :password_confirmation, :required => false %>
+        <hr>
+        <%= f.input :current_password, :required => true %>
+        <%= f.button :submit, 'Update Account', class: 'btn btn-success', style: 'width:100%' %>
 
-<% end %>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        <h4>Editing your account</h4>
+        <p>You can update any of the information that you used to sign up with. If you wish to change your avatar do so with the link provided and it will be updated on our website. We never share your data with our providers and strive to continue to improve the security of the site. If you have any questions of feature request feel free to contact us.</p>
+        <a href="mailto:support@invictus-hd.com">Contact Us <span class="glyphicon glyphicon-share-alt"></span></a>
+        <h4>Editing your Gravatar</h4>
+        <p>We use the gravatar service to provide profile picturs for the website. If you already have a gravatar account for your email your gravatar will be automaticly imported. If not you can change your picture for free over on their website.</p>
+        <a class="btn btn-sm btn-info" href="http://gravatar.com/emails">Change Picture  <span class="glyphicon glyphicon-share-alt"></a>
+        <h4>Account deletion</h4>
+        <p>All personal information is kept secure and confidential. No personal information is ever shared. An account deletion request removes all personal information from our server. To request a deletion, contact us here, with topic being "Account Deletion"</p>
+        <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'btn btn-danger btn-sm' %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<h3>Cancel my account</h3>
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
+<%= render 'shared/footer' %>

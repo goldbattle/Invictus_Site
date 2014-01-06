@@ -1,14 +1,46 @@
+<!--Copyright Invictus Textures-->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InvictusSiteV2</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <title><%= full_title(yield(:title)) %></title>
+  <!--Favicons-->
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'favicon.png', rel: 'apple-touch-icon', type: 'image/png' %>
+  <!-- Stylesheets -->
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <!-- Javascripts -->
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <!--Auth Meta Tags-->
   <%= csrf_meta_tags %>
+  <!--Meta Tags-->
+  <meta name="description" content="Invictus is an HD Minecraft resource pack.">
+  <meta name="keywords" content="invictus, textures, graphics, Minecraft, hd, texturepack, resourcepack">
+  <meta name="author" content="Invictus Graphics">
+  <meta charset="UTF-8">
+  <!--End of content-->
 </head>
 <body>
 
+<% if Date.today == Date.new(Date.today.year,12,24) || Date.today == Date.new(Date.today.year,12,25)%>
+  <!--Special Christmas Code-->
+  <%= javascript_include_tag "jquery.snow.min" %>
+  <script>
+  $(document).ready( function(){
+    $.fn.snow();
+  });
+  </script>
+<% end %>
+
+<!-- Main Content -->
 <%= yield %>
+<!--End of content-->
+
+<% if Rails.env.development? %>
+  <!--Debug-->
+  <div class="container">
+    <%= debug(params) %>
+  </div>
+<% end %>
 
 </body>
 </html>

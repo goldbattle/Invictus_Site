@@ -8,7 +8,7 @@ InvictusSiteV2::Application.routes.draw do
   match '/revisions/modded', to: 'static_pages#git_revisions_modded', via: 'get'
   match '/downloads', to: 'static_pages#index_downloads', via: 'get'
   match '/about', to: 'static_pages#index_about', via: 'get'
-  # Send devise to our
+  # Send devise to our controller
   devise_for :users, :controllers => {
     registrations: "users/registrations", 
     passwords: "users/passwords", 

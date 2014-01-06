@@ -29,6 +29,9 @@ gem "simple_form", "~> 3.0.1"
 gem "devise", "~> 3.2.2"
 # Authentication system
 gem "cancan", "~> 1.6.10"
+gem "github-markdown", "0.6.3"
+gem 'will_paginate', '3.0.5'
+gem 'will_paginate-bootstrap', '1.0.0'
 # =====================================================
 
 # Use jquery as the JavaScript library

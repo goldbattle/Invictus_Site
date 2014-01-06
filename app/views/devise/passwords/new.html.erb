@@ -1,4 +1,4 @@
-<% provide(:title, 'Sign Up') %>
+<% provide(:title, 'Forgotten Password') %>
 
 <%= render 'shared/navbar' %>
 
@@ -19,16 +19,14 @@
 
     </div>
     <div class="col-md-6 col-md-offset-1">
-      <h3>
-        <ul style="list-style-type: none;">
-          <li style="margin-top:20px;">
-            <span class="label label-default"><%= link_to "Sign in", new_session_path(resource_name) %></span>
-          </li>
-          <li style="margin-top:20px;">
-            <span class="label label-default"><%= link_to "Sign up", new_registration_path(resource_name) %></span>
-          </li>
-        </ul>        
-      </h3>
+      <ul style="list-style-type: none;">
+        <li style="margin-top:20px;">
+          <span class="nav-pill-list"><%= link_to "Sign in", new_session_path(resource_name) %></span>
+        </li>
+        <li style="margin-top:20px;">
+          <span class="nav-pill-list"><%= link_to "Sign up", new_registration_path(resource_name) %></span>
+        </li>
+      </ul>        
     </div>
   </div>
 </div>

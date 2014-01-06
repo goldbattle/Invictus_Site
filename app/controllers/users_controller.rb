@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    @users_all = User.all.order("created_at DESC")
+    @users = User.paginate(:page => params[:page], :per_page => 15).order('created_at DESC')
   end
 
   def show
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    authorize! :create, @user, :message => 'Not authorized as an administrator.'
+    #authorize! :create, @user, :message => 'Not authorized as an administrator.'
 
     @user = User.new(user_params)
     respond_to do |format|
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    #authorize! :update, @user, :message => 'Not authorized as an administrator.'
     respond_to do |format|
 
       if @user.update_attributes(user_params)
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    #authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
 
     @user.destroy
     respond_to do |format|
