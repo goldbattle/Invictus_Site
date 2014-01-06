@@ -12,7 +12,9 @@
  *= require_tree .
  */
 
-@import 'bootstrap';
+@import "bootstrap";
+@import "bootstrap-theme";
+@import url("http://fonts.googleapis.com/css?family=Telex");
 
 body {
   padding: 10px 30px;
