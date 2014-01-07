@@ -13,13 +13,14 @@ class Ability
       # An admin has control of everything
       can :manage, :all
     elsif user.role == "moderator"
-      
+      can :index, Post
     elsif user.role == "registered"
-      
+      can :index, Post
+      can :show, Post
     elsif user.role == "banned"
       cannot :manage, :all
     else
-      
+      can :index, Post
     end
 
   end

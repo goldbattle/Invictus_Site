@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   # Set the @post variable
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  # Authentication
+  load_and_authorize_resource
 
   def index
-    # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     # All post that are not drafts, is_draft=false
     @posts = Post.where(:is_visible => true).paginate(:page => params[:page], :per_page => 5)
     # All draft post, for admins
@@ -12,8 +12,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    # Authentication
-    authorize! :show, @user, :message => 'Not authorized as an administrator.'
     # Update view count
     if @post.view_count
       @post.view_count += 1
@@ -28,20 +26,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    # Authentication
-    authorize! :new, @user, :message => 'Not authorized as an administrator.'
-    # Create new post obj.
     @post = Post.new
   end
 
   def edit
-    # Authentication
-    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
   end
 
   def update
-    # Authentication
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     # Save the the post
     if @post.update_attributes(post_params)
       flash[:success] = "Post has been updated."
@@ -55,8 +46,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # Authentication
-    authorize! :create, @user, :message => 'Not authorized as an administrator.'
     # Create object
     @post = Post.new(post_params)
     @post.user = current_user
@@ -73,9 +62,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # Authentication
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
-    # Find and destroy
     @post.destroy
     flash[:success] = "Post has been deleted."
     redirect_to posts_path
@@ -99,7 +85,7 @@ private
         users = User.where(:is_subscribed => true)
         # Send to users
         for user in users
-          puts 'UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver'
+          #UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
         end
         # Update variable
         post.is_mail_sent = true
