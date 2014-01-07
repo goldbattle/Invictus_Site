@@ -26,6 +26,10 @@
           <ul class="dropdown-menu">
           <% if signed_in? %>
             <li><%= link_to "Settings", edit_user_registration_path %></li>
+            <% if can? :index, User %>
+              <li><%= link_to "Users", users_path %></li>
+              <li class="divider"></li>
+            <% end %>
             <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
           <% else %>
             <li><%= link_to('Sign In', new_user_session_path)  %></li>

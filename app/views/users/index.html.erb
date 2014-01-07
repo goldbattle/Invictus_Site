@@ -18,7 +18,12 @@
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Logins</th>
+        <th>Login Last</th>
+        <th>Last IP</th>
+        <th>Email</th>
         <th>Actions</th>
+        <th>Date Updated</th>
         <th>Date Created</th>
       </tr>
     </thead>
@@ -29,8 +34,13 @@
           <td><%= user.username %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>
-          <td><%= link_to "Edit", edit_user_path(user) %> | Role</td>
-          <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
+          <td><%= user.sign_in_count %></td>
+          <td><%= user.last_sign_in_at.strftime("%m/%d/%Y %I:%M %P") %></td>
+          <td><%= user.last_sign_in_ip %></td>
+          <td><%= user.is_subscribed %></td>
+          <td><%= link_to "Edit", edit_user_path(user), class: "btn btn-sm" %></td>
+          <td><%= user.updated_at.getlocal.strftime("%m/%d/%Y %I:%M %P") %></td>
+          <td><%= user.created_at.getlocal.strftime("%m/%d/%Y %I:%M %P") %></td>
           </li>
         </tr>
       <% end %>

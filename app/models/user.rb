@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   # Upgrading from a legacy account
   def valid_password?(password)
-    if self.legacy_password_hash.present?
+    if self.respond_to?('legacy_password_hash') && self.legacy_password_hash.present?
       if BCrypt::Password.new(self.legacy_password_hash) == password
         self.password = password
         self.legacy_password_hash = nil
