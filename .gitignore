@@ -17,3 +17,6 @@
 
 # SyncToy
 *.dat
+
+# Security
+/config/config.yml

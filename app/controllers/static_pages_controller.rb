@@ -60,7 +60,7 @@ private
       # Send in a GET request for information
       request = Net::HTTP::Get.new(uri.request_uri)
       # Lets authenticate to get private repos
-      #request.basic_auth(APP_CONFIG['github_username'], APP_CONFIG['github_password'])
+      request.basic_auth(APP_CONFIG['github_username'], APP_CONFIG['github_password'])
       # Get the response, and convert
       response = http.request(request)
       # Return the Decoded Json
