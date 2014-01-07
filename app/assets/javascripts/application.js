@@ -18,3 +18,8 @@
 
 // Custom Assets
 //= require googletracking
+
+// Highlights on buttons
+$(document).ready(function() {
+  $('input').tooltip();
+});

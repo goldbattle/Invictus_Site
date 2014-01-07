@@ -9,9 +9,11 @@
 User.create!(username: "GoldBattle",
              email: "goldbattle@invictus-hd.com",
              password: "longpassword",
-             password_confirmation: "longpassword")
+             password_confirmation: "longpassword",
+             role: "admin")
 # Create another "admin" user
 User.create!(username: "Shoeboxam",
              email: "shoeboxam@invictus-hd.com",
              password: "longpassword",
-             password_confirmation: "longpassword")
+             password_confirmation: "longpassword",
+             role: "admin")
