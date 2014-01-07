@@ -1,0 +1,11 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    The form contains <%= pluralize(@post.errors.count, "error") %>.
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

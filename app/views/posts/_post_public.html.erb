@@ -1,0 +1,27 @@
+<div class="row">
+
+  <!-- Picture -->
+  <div class="col-md-5">
+    <%= image_tag post.thumbnail.url, :class=>"img-responsive img-thumb" %>
+  </div>
+
+  <!--Info/Content/Link -->
+  <div class="col-md-6">
+    <!-- Header/Link/Author -->
+    <h3>
+      <%= link_to post.title, post_path(post) %>
+      <small>
+        by <%= findUserById(post.user_id).username %>
+      </small>
+    </h3>
+    <!-- Timestamps -->
+    <p style="color:#7a8288;">
+      <%= post.created_at.getlocal.strftime("Created %m/%d/%Y at %I:%M %P") %>
+    </p>
+    <!-- Content -->
+    <div style="word-wrap:break-word;">
+      <%= markdown(post.content[0...250]+" ...")%>
+    </div>
+  </div>
+
+</div>

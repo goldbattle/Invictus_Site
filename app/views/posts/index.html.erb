@@ -1,0 +1,35 @@
+<% provide(:title, "Blog") %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>
+      Invictus Blog
+      <% if can? :create, Post %>
+        <div class="pull-right">
+          <%= link_to("New Post", new_post_path, :class=> "btn btn-primary") %>
+        </div>
+      <% end %>
+    </h2>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><%= link_to("Home", root_url )%></li>
+        <li class="active">Blog</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr style="margin-top:0px">
+
+  <%= render "shared/flash" %>
+
+  <%= render 'posts/index_public' %>
+
+</div>
+
+<%= render 'shared/footer' %>

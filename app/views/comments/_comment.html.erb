@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <!--Comment Header-->
+  <div class="panel-heading" style="padding: 1px 10px">
+    <h4>
+      <%= gravatar_for(findUserById(comment.user_id), size: 30 ) %>
+      <%= findUserById(comment.user_id).username %> 
+      <small>
+        <%= comment.created_at.getlocal.strftime("Posted %m/%d/%Y at %I:%M %P") %>
+      </small>
+      <% if signed_in? && (current_user?(findUserById(comment.user_id)) || current_user.admin?) %>
+        <div class="btn-group pull-right">
+          <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+            Actions
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a data-toggle="modal" data-target="#modal<%= comment.id %>">Edit</a></li>
+            <% if current_user.admin? %>
+              <!--Delete Comment-->
+              <li><%= link_to 'Delete', [comment.post, comment], data: { confirm: "You sure?" },  :method => :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </h4>
+  </div>
+
+  <!--Comment Body-->
+  <div class="panel-body" style="word-wrap:break-word;">    
+    <p><%= comment.content %></p>
+  </div>
+</div>

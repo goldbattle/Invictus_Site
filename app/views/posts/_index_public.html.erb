@@ -1,0 +1,10 @@
+<!-- Main Post Content -->
+<% @posts.each do |post| %>
+  <%= render 'post_public', :post => post %>
+  <% if !(post.equal? @posts.last) %>
+    <hr>
+  <% end %>
+<% end %>
+
+<!-- Pagination -->
+<%= will_paginate @posts, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>

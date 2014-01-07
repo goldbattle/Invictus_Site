@@ -1,0 +1,23 @@
+<!-- Comments go here -->
+<div class="well">
+  <h4>Leave a Comment:</h4>
+  <%= form_for([@post, @comment]) do |f| %>
+
+    <% if signed_in? %>
+      <!--Signed In-->
+      <div class="form-group">
+        <%= f.text_area :content, class: "form-control", rows: 3, :onKeyUp => 'update_count(this,-1)' %>
+      </div>
+      <%= f.submit "Submit", class: "btn btn-primary", :data => { disable_with: 'Submitting', :toggle=>"tooltip", :placement=>"left", :title=>"Tab+Enter"} %>
+      <small><span id="chars-1">400</span>/400 characters</small>
+    <% else %>
+      <!--Not Signed In-->
+      <div class="form-group">
+        <%= f.text_area :content, class: "form-control", rows: 3, disabled: "" %>
+      </div>
+      <%= link_to("Sign Up", new_user_path, :class=> "btn btn-success") %>
+      <small>Posting is restricted to members</small>
+    <% end %>
+
+  <% end %>
+</div>
