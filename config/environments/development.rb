@@ -27,6 +27,13 @@ InvictusSiteV2::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Url
+  # Path to Image Magick, used to resize images
+  Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-6.8.7-Q16'
+
+  # Set the application host name
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # We don't want to mail people, but get errors
+  config.action_mailer.perform_deliveries = false 
+  config.action_mailer.raise_delivery_errors = true
 end

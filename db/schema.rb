@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107183617) do
+ActiveRecord::Schema.define(version: 20140107205204) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -30,10 +30,18 @@ ActiveRecord::Schema.define(version: 20140107183617) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "view_count"
-    t.boolean  "is_visible",   default: false
-    t.boolean  "is_mail_sent", default: false
+    t.boolean  "is_visible",             default: false
+    t.boolean  "is_mail_sent",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
+    t.string   "header_file_name"
+    t.string   "header_content_type"
+    t.integer  "header_file_size"
+    t.datetime "header_updated_at"
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug"

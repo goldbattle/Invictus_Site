@@ -18,6 +18,8 @@
 
 // Custom Assets
 //= require googletracking
+//= require mdhtmlform
+//= require showdown
 
 // Highlights on buttons
 $(document).ready(function() {
