@@ -89,19 +89,3 @@ SimpleForm.setup do |config|
   # buttons and other elements.
   config.default_wrapper = :bootstrap3
 end
-
-## File upload
-class FileUploadInput < SimpleForm::Inputs::Base
-  def input
-    template.content_tag(:div, class: "fileinput fileinput-new", data: { provides: "fileinput" }) do
-      #template.concat(template.content_tag(:div, nil, class: "input-group"))
-      template.concat(template.content_tag(:span, class: "btn btn-default btn-file") do        
-        template.concat(template.content_tag(:span, "Select file", class: "fileinput-new"))
-        template.concat(template.content_tag(:span, "Change", class: "fileinput-exists"))
-        template.concat(@builder.file_field attribute_name, input_html_options)
-      end)
-      template.concat(template.content_tag(:span, nil, class: "fileinput-filename", style: "margin-right: 4px; margin-left: 4px;"))
-      template.concat(template.content_tag(:a, "&times;".html_safe, class: "close fileinput-exists", data: { :dismiss => "fileinput" }, style: "float: none; color:white;"))
-    end
-  end
-end

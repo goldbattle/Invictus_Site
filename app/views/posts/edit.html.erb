@@ -24,52 +24,74 @@
   <hr style="margin-top:0px">
 
   <%= render "shared/flash" %>
+  <%= render 'error_messages' %>
 
-  <%= form_for(@post, multipart: true) do |f| %>
+  <%= simple_form_for(@post, :url => post_path(@post), :html => { :method => :put, multipart: true }) do |f| %>
 
-    <%= render 'error_messages' %>
-
-    <div class="pull-right form-inline">
-      <%= f.select :is_visible, [['Post Visible', true], ['Post Hidden', false]], {}, class: "form-control" %>
-      <%= f.submit "Submit", class: "btn btn-large btn-success", :data => { disable_with: 'Saving' } %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :thumbnail %>
-      <small>600 x 300</small><br>
-      <%= f.file_field :thumbnail %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :header %>
-      <small>900 x 300</small><br>
-      <%= f.file_field :header %>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <!-- Edit markdown -->
-        <div class="col-lg-6">
-          <%= f.label :content %>
-          <small>(Ctrl + M for Help)</small>
-          <%= f.text_area :content, :class=>"mdhtmlform-md" %>
+    <div class="row">
+      <!--Title and Slug-->
+      <div class="col-md-4">
+        <%= f.input :title, :required => true %>
+        <%= f.input :slug, :required => true, label: "Slug/Url" %>
+      </div>
+      <!--Image Uploads-->
+      <div class="col-md-5">
+        <%= f.label :thumbnail, required: false %>
+        <small>600 x 300</small><br>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="input-group">
+            <div class="form-control uneditable-input span3" data-trigger="fileinput">
+              <i class="glyphicon glyphicon-file fileinput-exists"></i> 
+              <span class="fileinput-filename"></span>
+            </div>
+            <span class="input-group-addon btn btn-default btn-file">
+              <span class="fileinput-new">Select file</span>
+              <span class="fileinput-exists">Change</span>
+              <%= f.file_field :thumbnail, required: false %>
+            </span>
+            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+          </div>
         </div>
-        <!-- Display converted html -->
-        <div class="col-lg-6">
-          <label>Html Output</label>
-          <div class="mdhtmlform-html"></div>
+        <%= f.label :header, required: false %>
+        <small>600 x 300</small><br>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="input-group">
+            <div class="form-control uneditable-input span3" data-trigger="fileinput">
+              <i class="glyphicon glyphicon-file fileinput-exists"></i> 
+              <span class="fileinput-filename"></span>
+            </div>
+            <span class="input-group-addon btn btn-default btn-file">
+              <span class="fileinput-new">Select file</span>
+              <span class="fileinput-exists">Change</span>
+              <%= f.file_field :header, required: false %>
+            </span>
+            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+          </div>
+        </div>
+      </div>
+      <!--Visiblity and Submit-->
+      <div class="col-md-3">
+        <div class="pull-right form-inline">
+        <%= f.input :is_visible, :collection => [['Post Visible', true], ['Post Hidden', false]], :include_blank => false, label: false %>
+        <%= f.submit "Submit", class: "btn btn-large btn-success", :data => { disable_with: 'Saving' } %>
         </div>
       </div>
     </div>
-    
-    
-    
-    
+
+    <div class="row">
+      <!-- Edit markdown -->
+      <div class="col-lg-6">
+        <%= f.label :content %>
+        <small>(Ctrl + M for Help)</small>
+        <%= f.text_area :content, :class=>"mdhtmlform-md" %>
+      </div>
+      <!-- Display converted html -->
+      <div class="col-lg-6">
+        <label>Html Output</label>
+        <div class="mdhtmlform-html"></div>
+      </div>
+    </div>
+
   <% end %>
 </div>
 

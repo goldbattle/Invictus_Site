@@ -33,8 +33,6 @@ class PostsController < ApplicationController
   def update
     # Update object
     @post = Post.find_by_slug(params[:id])
-    # Save slug
-    @post.slug = params[:post][:title].parameterize
     # Save the the post
     if @post.update_attributes(post_params)
       flash[:success] = "Post has been updated."
@@ -49,9 +47,8 @@ class PostsController < ApplicationController
 
   def create
     # Create object
-    @post = current_user.posts.build(post_params)
-    # Save slug
-    @post.slug = @post.title.parameterize
+    @post = Post.new(post_params)
+    @post.user = current_user
     # Save the the post
     if @post.save
       flash[:success] = "Added a new post."
@@ -73,7 +70,7 @@ class PostsController < ApplicationController
 private
     # Strong Parameters
     def post_params
-      params.require(:post).permit(:title, :thumbnail, :header, :content, :is_visible)
+      params.require(:post).permit(:title, :slug, :content, :thumbnail, :header, :is_visible)
     end
     # Before filters
     # Only allow admins to do things, if not send them away
