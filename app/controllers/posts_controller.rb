@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  # Set the @post variable
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     # Authentication
@@ -11,9 +13,7 @@ class PostsController < ApplicationController
 
   def show
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    # Find the Post
-    @post = Post.find_by_slug(params[:id])
+    authorize! :show, @user, :message => 'Not authorized as an administrator.'
     # Update view count
     if @post.view_count
       @post.view_count += 1
@@ -29,23 +29,19 @@ class PostsController < ApplicationController
 
   def new
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :new, @user, :message => 'Not authorized as an administrator.'
     # Create new post obj.
     @post = Post.new
   end
 
   def edit
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    # Find the post by slug
-    @post = Post.find_by_slug(params[:id])
+    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
   end
 
   def update
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    # Update object
-    @post = Post.find_by_slug(params[:id])
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     # Save the the post
     if @post.update_attributes(post_params)
       flash[:success] = "Post has been updated."
@@ -60,7 +56,7 @@ class PostsController < ApplicationController
 
   def create
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :create, @user, :message => 'Not authorized as an administrator.'
     # Create object
     @post = Post.new(post_params)
     @post.user = current_user
@@ -78,14 +74,18 @@ class PostsController < ApplicationController
 
   def destroy
     # Authentication
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     # Find and destroy
-    Post.find_by_slug(params[:id]).destroy
+    @post.destroy
     flash[:success] = "Post has been deleted."
     redirect_to posts_path
   end
 
 private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find_by_slug(params[:id])
+  end
   # Strong Parameters
   def post_params
     params.require(:post).permit(:title, :slug, :content, :thumbnail, :header, :is_visible)
@@ -94,12 +94,12 @@ private
   def email_post_update(post)
     # Create a new thread
     Thread.new do
-      #sleep(10)
+      # sleep(10)
       if post.is_visible? && !post.is_mail_sent?
         users = User.where(:is_subscribed => true)
         # Send to users
         for user in users
-          #UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
+          puts 'UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver'
         end
         # Update variable
         post.is_mail_sent = true
