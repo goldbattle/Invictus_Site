@@ -12,10 +12,10 @@ class Post < ActiveRecord::Base
   validates :is_visible, inclusion: [true, false]
   validates :is_mail_sent, inclusion: [true, false]
   # Picture attachments and resizing
-  #has_attached_file :thumbnail, :styles => { :original => "600x300#" }, :default_url => "600x300.gif"
-  #validates :thumbnail, attachment_presence: true
-  #has_attached_file :header, :styles => { :original => "900x300#" }, :default_url => "900x300.gif"
-  #validates :header, attachment_presence: true
+  has_attached_file :thumbnail, :styles => { :original => "600x300#" }, :default_url => "600x300.gif"
+  validates :thumbnail, attachment_presence: true
+  has_attached_file :header, :styles => { :original => "900x300#" }, :default_url => "900x300.gif"
+  validates :header, attachment_presence: true
 
   # Vanity Url
   def to_param

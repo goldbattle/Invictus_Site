@@ -20,6 +20,7 @@
 //= require googletracking
 //= require mdhtmlform
 //= require showdown
+//= require jasny-bootstrap
 
 // Highlights on buttons
 $(document).ready(function() {
