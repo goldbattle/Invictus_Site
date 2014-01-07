@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownController, :with => :render_404
     rescue_from Exception, :with => :render_500
   end 
+  # Catch Perm Error
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_url, :alert => exception.message
+  end
   # Render a 404 page
   def render_404
     render 'errors/index_404'

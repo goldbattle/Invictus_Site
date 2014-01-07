@@ -17,6 +17,7 @@
         <th></th>
         <th>Username</th>
         <th>Email</th>
+        <th>Role</th>
         <th>Actions</th>
         <th>Date Created</th>
       </tr>
@@ -27,6 +28,7 @@
           <td><%= gravatar_for user, size: 25 %></td>
           <td><%= user.username %></td>
           <td><%= user.email %></td>
+          <td><%= user.role %></td>
           <td><%= link_to "Edit", edit_user_path(user) %> | Role</td>
           <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
           </li>

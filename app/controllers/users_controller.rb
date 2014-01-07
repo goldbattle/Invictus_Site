@@ -4,16 +4,24 @@ class UsersController < ApplicationController
 
   # Main user index, list all users
   def index
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # Main content
     @users_all = User.all.order("created_at DESC")
     @users = User.paginate(:page => params[:page], :per_page => 15).order('created_at DESC')
   end
 
   # Edit user profile
   def edit
+    # Authentication
+    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
   end
 
   # Update the user after edit
   def update
+    # Authentication
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    # Main content
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile has been updated"
@@ -25,6 +33,9 @@ class UsersController < ApplicationController
 
   # Delete the user
   def destroy
+    # Authentication
+    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    # Main content
     @user.destroy
     flash[:success] = "User deleted."
     redirect_to users_url

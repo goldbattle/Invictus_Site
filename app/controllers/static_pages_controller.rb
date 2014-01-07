@@ -1,8 +1,6 @@
 class StaticPagesController < ApplicationController
 
   def index_main
-    # Root homepage
-    
     # Info image path    
     images = Dir.glob("app/assets/images/main/info/*.png")
     @random_images = []

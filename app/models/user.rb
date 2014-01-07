@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates(:username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 5, maximum: 20 })
   # Email subscriptions
   validates :is_subscribed, inclusion: [true, false]
+  # User roles
+  ROLES = %w[admin moderator registered banned]
 
   # Upgrading from a legacy account
   def valid_password?(password)
