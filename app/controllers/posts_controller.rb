@@ -1,12 +1,8 @@
 class PostsController < ApplicationController
-  # Only permit people that are signed in to edit themselves
-  #before_action :signed_in_user, except: [:index, :show]
-  # Allow admins to access certain things
-  #before_action :admin_user, except: [:index, :show]
-  # Only allow admins to see drafts
-  #before_action :post_visible, only: [:show]
 
   def index
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     # All post that are not drafts, is_draft=false
     @posts = Post.where(:is_visible => true).paginate(:page => params[:page], :per_page => 5)
     # All draft post, for admins
@@ -14,8 +10,17 @@ class PostsController < ApplicationController
   end
 
   def show
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     # Find the Post
     @post = Post.find_by_slug(params[:id])
+    # Update view count
+    if @post.view_count
+      @post.view_count += 1
+    else
+      @post.view_count = 1
+    end
+    @post.save
     # Create new comment
     @comment = Comment.new
     # Pagination, no more then 10 per page
@@ -23,14 +28,22 @@ class PostsController < ApplicationController
   end
 
   def new
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # Create new post obj.
     @post = Post.new
   end
 
   def edit
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # Find the post by slug
     @post = Post.find_by_slug(params[:id])
   end
 
   def update
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     # Update object
     @post = Post.find_by_slug(params[:id])
     # Save the the post
@@ -46,6 +59,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     # Create object
     @post = Post.new(post_params)
     @post.user = current_user
@@ -62,46 +77,36 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # Authentication
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # Find and destroy
     Post.find_by_slug(params[:id]).destroy
     flash[:success] = "Post has been deleted."
     redirect_to posts_path
   end
 
 private
-    # Strong Parameters
-    def post_params
-      params.require(:post).permit(:title, :slug, :content, :thumbnail, :header, :is_visible)
-    end
-    # Before filters
-    # Only allow admins to do things, if not send them away
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
-    # Only allow admins to see drafts
-    def post_visible
-      # If the post is not visible redirect unless you are an admin
-      if !Post.find_by_slug(params[:id]).is_visible? && !(signed_in? && current_user.admin?)
-        flash[:warning] = "Nothing is there anymore!"
-        redirect_to(posts_path)
-      end
-    end
-    # Email people subscribed
-    def email_post_update(post)
-      # Create a new thread
-      Thread.new do
-        #sleep(10)
-        if post.is_visible? && !post.is_mail_sent?
-          users = User.where(:is_subscribed => true)
-          # Send to users
-          for user in users
-            #UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
-          end
-          # Update variable
-          post.is_mail_sent = true
-          post.save
+  # Strong Parameters
+  def post_params
+    params.require(:post).permit(:title, :slug, :content, :thumbnail, :header, :is_visible)
+  end
+  # Email people subscribed
+  def email_post_update(post)
+    # Create a new thread
+    Thread.new do
+      #sleep(10)
+      if post.is_visible? && !post.is_mail_sent?
+        users = User.where(:is_subscribed => true)
+        # Send to users
+        for user in users
+          #UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
         end
-        # Close the connection
-        ActiveRecord::Base.connection.close
+        # Update variable
+        post.is_mail_sent = true
+        post.save
       end
+      # Close the connection
+      ActiveRecord::Base.connection.close
     end
+  end
 end
