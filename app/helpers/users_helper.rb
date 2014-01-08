@@ -9,11 +9,11 @@ module UsersHelper
 
   def findUserById(user_id)
     user = User.find_by_id(user_id)
-    if(user == nil)
-      # Create a new user
-      user = User.new(username: "Removed User", email: "deleted@invictus.com", admin: false)
+    # Create a new user
+    if(!user)
+      user = User.new(username: "Removed User", email: "deleted@invictus.com" )
     end
     # Return the user
-    user
+    return user
   end
 end

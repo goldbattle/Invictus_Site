@@ -3,18 +3,14 @@
   <h4>Leave a Comment:</h4>
   <%= form_for([@post, @comment]) do |f| %>
 
-    <% if signed_in? %>
+    <% if can? :create, Comment %>
       <!--Signed In-->
-      <div class="form-group">
-        <%= f.text_area :content, class: "form-control", rows: 3, :onKeyUp => 'update_count(this,-1)' %>
-      </div>
+      <%= f.text_area :content, class: "form-control", rows: 3, :onKeyUp => 'update_count(this)' %><br>
       <%= f.submit "Submit", class: "btn btn-primary", :data => { disable_with: 'Submitting', :toggle=>"tooltip", :placement=>"left", :title=>"Tab+Enter"} %>
-      <small><span id="chars-1">400</span>/400 characters</small>
+      <small><span id="chars">400</span>/400 characters</small>
     <% else %>
       <!--Not Signed In-->
-      <div class="form-group">
-        <%= f.text_area :content, class: "form-control", rows: 3, disabled: "" %>
-      </div>
+      <%= f.text_area :content, class: "form-control", rows: 3, disabled: "" %><br>
       <%= link_to("Sign Up", new_user_registration_path, :class=> "btn btn-success") %>
       <small>Posting is restricted to members</small>
     <% end %>

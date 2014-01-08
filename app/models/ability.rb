@@ -7,20 +7,30 @@ class Ability
   # alias_action :edit, :to => :update
 
   def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    # Main Logic
-    if user.role == "admin"
-      # An admin has control of everything
+    # Non-Login
+    if user == nil
+      can :index, Post
+      can :show, Post
+    # Admin
+    elsif user.role == "admin"
       can :manage, :all
+    # Moderator, comments
     elsif user.role == "moderator"
       can :index, Post
       can :show, Post
+      can :create, Comment
+      can :update, Comment
+      can :destroy, Comment
+    # Normal Login
     elsif user.role == "registered"
       can :index, Post
       can :show, Post
+      can :create, Comment
+      can :update, Comment do |comment|
+        comment.try(:user) == user
+      end
+    # Banned!
     elsif user.role == "banned"
-      cannot :manage, :all
-    else
       can :index, Post
       can :show, Post
     end

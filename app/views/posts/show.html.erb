@@ -51,36 +51,37 @@
         <%= markdown(@post.content)%>
       </div>
       <hr>
-    
+      
       <%= render 'comments/post_comment' %>
 
-      <!-- Start Comments Script -->
-      <script type="text/javascript">
-        function update_count(val,id) {
-          var len = val.value.length;
-          if (len > 400) {
-            val.value = val.value.substring(0, 400);
-          } else {
-            $('#chars'+id).text(400-len);
-          }
-        };
-      </script>
-      <!-- End Comments Script -->
-
-      <% count = 0 %>
-      <% @comments.each do |comment| %>
-        <%= render comment %>
-        <%= render 'comments/edit_comment', :comment => comment  %>
-        <% count +=1 %>
+      <% if signed_in? %>
+        <!-- Start Comments Script -->
+        <script type="text/javascript">
+          function update_count(val,id) {
+            var len = val.value.length;
+            if (len > 400) {
+              val.value = val.value.substring(0, 400);
+            } else {
+              $(val).parent().parent().find("#chars").text(400-len)
+            }
+          };
+        </script>
+        <!-- End Comments Script -->
       <% end %>
 
-      <% if count >= 5 %>
+      <%#Render Comment %>
+      <% @comments.each do |comment| %>
+        <%= render comment %>
+      <% end %>
+
+      <%#If more then 5 comments,add second box %>
+      <% if @comments.length >= 5 %>
         <%= render 'comments/post_comment' %>
       <% end %>
 
       <%= will_paginate @comments, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>
 
-    </div><!-- post -->
+    </div>
 
     <!-- Side Bar -->
     <div class="col-lg-4">
@@ -92,7 +93,7 @@
         <h4>Modded Minecraft</h4>
         <p>Patches for mods are available from Soartex Fanver. We assist the Soartex mod support with our own contributions. Patches are best installed with the "mod patcher," a simple Java program that installs the patches to Invictus. <a href="http://new.creeperrepo.net/Soartex/resources/soartex-patcher/Soartex-Patcher-1.2.jar">Link</a></p>
       </div>
-    </div><!-- sidebar -->
+    </div>
   </div>
 </div>
 

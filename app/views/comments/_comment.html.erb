@@ -1,5 +1,6 @@
-<div class="panel panel-default">
-  <!--Comment Header-->
+<span class="anchor" id="<%= comment.id %>"></span>
+<div class="panel panel-default" style="margin: 6px">
+  <!--Comment-->
   <div class="panel-heading" style="padding: 1px 10px">
     <h4>
       <%= gravatar_for(findUserById(comment.user_id), size: 30 ) %>
@@ -7,15 +8,16 @@
       <small>
         <%= comment.created_at.getlocal.strftime("Posted %m/%d/%Y at %I:%M %P") %>
       </small>
-      <% if signed_in? && (current_user?(findUserById(comment.user_id)) || current_user.admin?) %>
+      <% if can? :edit, Comment %>
         <div class="btn-group pull-right">
           <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
             Actions
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
+            <li><a href="#<%= comment.id %>">Link</a></li>
             <li><a data-toggle="modal" data-target="#modal<%= comment.id %>">Edit</a></li>
-            <% if current_user.admin? %>
+            <% if can? :destroy, Comment %>
               <!--Delete Comment-->
               <li><%= link_to 'Delete', [comment.post, comment], data: { confirm: "You sure?" },  :method => :delete %></li>
             <% end %>
@@ -29,4 +31,9 @@
   <div class="panel-body" style="word-wrap:break-word;">    
     <p><%= comment.content %></p>
   </div>
+
+  <% if can? :edit, comment %>
+    <!--Edit Comment-->
+    <%= render 'comments/edit_comment', :comment => comment  %>
+  <% end %>
 </div>

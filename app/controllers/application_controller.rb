@@ -22,12 +22,13 @@ class ApplicationController < ActionController::Base
   def render_500
     render 'errors/index_500'
   end
-  # Strong Parm, let username through
+  # Cancan rails 4 fix
   before_filter do
     resource = controller_path.singularize.gsub('/', '_').to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
   end
+  # Strong Parm, let username through
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|

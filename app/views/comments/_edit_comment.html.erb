@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="modal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="left:auto;right:auto;">
 
@@ -10,19 +9,16 @@
           <h4 class="modal-title" id="myModalLabel">Edit Your Post</h4>
         </div>
         <div class="modal-body">
-          
-          <!--Edit Comment-->
-          <%= f.text_area :content, class: "form-control", rows: 5, :onKeyUp => "update_count(this,"+comment.id.to_s()+")" %>
-          
+          <%= f.text_area :content, class: "form-control", rows: 5, :onKeyUp => "update_count(this)" %>
         </div>
         <div class="modal-footer">
-          <small><span id="chars<%= comment.id %>">400</span>/400 characters </small>
+          <small><span id="chars">400</span>/400 characters </small>
           <%= f.submit "Submit", class: "btn btn-primary", :data => { disable_with: 'Submitting', :toggle=>"tooltip", :placement=>"top", :title=>"Tab+Enter"}  %>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-      </div><!-- /.modal-content -->
+      </div>
 
     <% end %>
 
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  </div>
+</div>
