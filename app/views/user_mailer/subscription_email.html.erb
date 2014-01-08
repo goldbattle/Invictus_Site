@@ -21,11 +21,11 @@
                 <h1 style="margin:10px 0 10px; color:#000;"><%= @post.title %></h1>
                 <p>We are notifying you because you have subscribed on <a href="http://invictus-hd.com" style="color: #348eda;">invictus-hd.com</a> to get notifications about new blog posts. A snip-it of the post is provided below.</p>
                 <h2></h2>
-                <p>"<%= GitHub::Markdown.render_gfm(@post.content[0..200]).html_safe %> ..."</p>
+                <p><%= GitHub::Markdown.render_gfm(@post.content[0..250]).html_safe %></p>
                 <table style="background-color:#FFFFFF;">
                   <tr>
                     <td style="color: #FFF;background-color: #348eda;border:solid #348eda;border-width:10px 20px;line-height:2;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;border-radius: 25px;">
-                      <%= link_to "Go to the blog post", post_url(@post), style: "text-decoration:none;" %>
+                      <%= link_to "Go to the blog post", post_url(@post), style: "text-decoration:none;color: #FFF;" %>
                     </td>
                   </tr>
                 </table>
@@ -52,7 +52,7 @@
           <table style="background-color:#f6f6f6; width:100%;">
             <tr>
               <td align="center">
-                <p style="font-size:12px; color:#999;">Edit email settings on your profile. <%= link_to 'Unsubscribe',  edit_user_url(@user), style: "color: #348eda;" %>.</p>
+                <p style="font-size:12px; color:#999;">Edit email settings on your profile. <%= link_to 'Unsubscribe',  edit_user_registration_path, style: "color: #348eda;" %>.</p>
               </td>
             </tr>
           </table>
