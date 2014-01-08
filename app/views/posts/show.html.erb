@@ -6,7 +6,8 @@
   <div class="page-header">
     <h2>
       <%= @post.title %>
-      <% if signed_in? %>
+      <% if can? :edit, Post %>
+        <!--Admin Actions-->
         <div class="pull-right">
           <%= link_to("Edit Post", edit_post_path(@post), :class=> "btn btn-primary") %>
           <%= link_to("Delete Post", @post, method: :delete, data: { confirm: "You sure?" }, :class=> "btn btn-danger") %>

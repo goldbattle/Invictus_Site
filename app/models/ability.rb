@@ -14,6 +14,7 @@ class Ability
       can :manage, :all
     elsif user.role == "moderator"
       can :index, Post
+      can :show, Post
     elsif user.role == "registered"
       can :index, Post
       can :show, Post
@@ -21,6 +22,7 @@ class Ability
       cannot :manage, :all
     else
       can :index, Post
+      can :show, Post
     end
 
   end

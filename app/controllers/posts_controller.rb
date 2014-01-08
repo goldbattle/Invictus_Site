@@ -35,6 +35,10 @@ class PostsController < ApplicationController
   def update
     # Save the the post
     if @post.update_attributes(post_params)
+      # Clean slug
+      @post.slug = @post.slug.parameterize
+      @post.save
+      # Message
       flash[:success] = "Post has been updated."
       # Send out emails if needed
       email_post_update(@post)
@@ -49,6 +53,7 @@ class PostsController < ApplicationController
     # Create object
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.slug = @post.slug.parameterize
     # Save the the post
     if @post.save
       flash[:success] = "Added a new post."

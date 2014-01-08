@@ -1,0 +1,57 @@
+<div class="row">
+
+  <!-- Picture -->
+  <div class="col-md-5">
+    <%= image_tag post.thumbnail.url, :class=>"img-responsive img-thumb" %>
+  </div>
+
+  <!--Info/Content/Link -->
+  <div class="col-md-6">
+    <!-- Header/Link/Author -->
+    <h3>
+      <%= link_to post.title, post_path(post) %>
+      <small>
+        by <%= findUserById(post.user_id).username %>
+        <% if can? :edit, Post %>
+          <!--Draft Status-->
+          <% if post.is_visible? %>
+            <span class="label label-success">Visible</span>
+          <% else %>
+            <span class="label label-info">Hidden</span>
+          <% end %>
+          <% if post.is_mail_sent? %>
+            <span class="label label-info">Sent</span>
+          <% end %>
+        <% end %>
+      </small>
+      <% if can? :edit, Post %>
+        <!--Admin Actions-->
+        <div class="btn-group pull-right">
+          <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+            Actions
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Edit', edit_post_path(post) %></li>
+            <li><%= link_to 'Delete', post, :method => :delete, data: { confirm: "Are you sure?" } %></li>
+          </ul>
+        </div>
+      <% end %>
+    </h3>
+    <!-- Timestamps -->
+    <p style="color:#7a8288;">
+      <%= post.created_at.getlocal.strftime("Created %m/%d/%Y at %I:%M %P") %>
+      <% if can? :edit, Post && post.view_count %>
+        <span class="label label-default">
+          <span class="glyphicon glyphicon-flash"></span>
+          <%= post.view_count %>
+        </span>
+      <% end %>
+    </p>
+    <!-- Content -->
+    <div style="word-wrap:break-word;">
+      <%= markdown(post.content[0...250]+" ...")%>
+    </div>
+  </div>
+
+</div>

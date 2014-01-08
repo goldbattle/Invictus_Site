@@ -28,7 +28,27 @@
 
   <%= render "shared/flash" %>
 
-  <%= render 'posts/index_admin' %>
+  <% if can? :edit, Post %>
+    <!-- Main Post Content -->
+    <% @post_all.each do |post| %>
+      <%= render 'post', :post => post %>
+      <% if !(post.equal? @post_all.last) %>
+        <hr>
+      <% end %>
+    <% end %>
+    <!-- Pagination -->
+    <%= will_paginate @post_all, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>
+  <% else %>
+    <!-- Main Post Content -->
+    <% @posts.each do |post| %>
+      <%= render 'post', :post => post %>
+      <% if !(post.equal? @posts.last) %>
+        <hr>
+      <% end %>
+    <% end %>
+    <!-- Pagination -->
+    <%= will_paginate @posts, {:inner_window => 3, :outer_window => 0, renderer: BootstrapPagination::Rails} %>
+  <% end %>
 
 </div>
 
