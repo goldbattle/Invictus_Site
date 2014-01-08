@@ -15,8 +15,8 @@
 
         <%= f.input :username, :required => true %>
         <%= f.input :email, :required => true  %>
-        <%= f.input :is_subscribed, :as => :select, :include_blank => false, label: "Email Updates"%>
-        <%= f.input :role, :collection => User::ROLES, :include_blank => false, label: "User Role" %>
+        <%= f.input :is_subscribed, :as => :select, :include_blank => false, :required => true , label: "Email Updates"%>
+        <%= f.input :role, :collection => User::ROLES, :include_blank => false, :required => true, label: "User Role" %>
 
         <%= f.button :submit, 'Update Account', class: 'btn btn-success', style: 'width:100%' %>
 
