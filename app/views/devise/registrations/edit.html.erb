@@ -20,7 +20,7 @@
         <%= f.input :password_confirmation, :required => false %>
         <hr>
         <%= f.input :current_password, :required => true %>
-        <%= f.button :submit, 'Update Account', class: 'btn btn-success', style: 'width:100%' %>
+        <%= f.button :submit, 'Update Account', class: 'btn btn-success', :data => { disable_with: 'Submitting' }, style: 'width:100%' %>
 
       </div>
       <div class="col-md-6 col-md-offset-1">

@@ -1,6 +1,6 @@
-<%-# If there are erros then display them -%>
+<%# If there are errors then display them %>
 <% if flash.any? %>
-  <%-# Get the "key" this can be {danger,success,warning,etc} -%>
+  <%# Get the "key" this can be {danger,success,warning,etc} %>
   <% flash.each do |key, value| %>
     <% 
     if key == :alert

@@ -90,7 +90,7 @@ private
         users = User.where(:is_subscribed => true)
         # Send to users
         for user in users
-          #UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
+          UserMailer.subscription_email("Blog Update ##{post.id}", user, post).deliver
         end
         # Update variable
         post.is_mail_sent = true
