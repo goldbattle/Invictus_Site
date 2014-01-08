@@ -9,13 +9,17 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require_directory .
  */
 
 @import "bootstrap";
 @import "bootstrap-theme";
 @import "jasny-bootstrap";
 @import url("http://fonts.googleapis.com/css?family=Telex");
+
+html {
+  overflow-y: scroll;
+}
 
 body {
   //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

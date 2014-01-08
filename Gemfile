@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # =====================================================
+# Fix javascript events
+gem 'jquery-turbolinks'
 # Mutes asset listing
 gem 'quiet_assets', :group => :development
 # Addes bootstrap
