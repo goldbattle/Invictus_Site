@@ -4,7 +4,12 @@
 
 <div class="container">
   <div class="page-header">
-    <h2>Edit Download</h2>
+    <h2>
+      Edit Download
+      <div class="pull-right">
+        <%= link_to "Back", downloads_path, class: "btn btn-primary" %>
+      </div>
+    </h2>
   </div>
 
   <%= render "shared/flash" %>
@@ -14,7 +19,7 @@
 
     <!--Submit-->
     <div class="pull-right form-inline">
-      <%= link_to "Back", downloads_path, class: "btn btn-primary" %>
+      <%= link_to 'Delete', download_path(@download), class: "btn btn-large btn-danger", data: { confirm: "You sure?" },  :method => :delete %>
       <%= f.submit "Submit", class: "btn btn-large btn-success", :data => { disable_with: 'Submitting' } %>
     </div>
 
