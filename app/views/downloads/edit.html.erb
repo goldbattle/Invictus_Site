@@ -1,0 +1,39 @@
+<% provide(:title, "Edit Download") %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Edit Download</h2>
+  </div>
+
+  <%= render "shared/flash" %>
+  <%= render 'error_messages' %>
+
+  <%= simple_form_for(@download, :url => download_path(@download), :html => { :method => :put, multipart: true }) do |f| %>
+
+    <!--Submit-->
+    <div class="pull-right form-inline">
+      <%= link_to "Back", downloads_path, class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-large btn-success", :data => { disable_with: 'Submitting' } %>
+    </div>
+
+    <div class="row">
+      <!--Title and Slug-->
+      <div class="col-md-4">
+        <%= f.input :title, :required => true %>
+        <%= f.input :weight_id, :required => true %>
+      </div>
+      <!--Download Booleans-->
+      <div class="col-md-4">
+        <%= f.input :is_public, :collection => [['Hidden', false], ['Visible', true]], :include_blank => false, label: "Public User" %>
+        <%= f.input :is_private, :collection => [['Hidden', false], ['Visible', true]], :include_blank => false, label: "Login User" %>
+      </div>
+    </div>
+
+    <%= f.input :content, :as => :text, :required => true, input_html: { rows: 12 } %>
+
+  <% end %>
+</div>
+
+<%= render 'shared/footer' %>

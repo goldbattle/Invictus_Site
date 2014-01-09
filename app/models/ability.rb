@@ -9,6 +9,7 @@ class Ability
   def initialize(user)
     # Non-Login
     if user == nil
+      can :index, Download
       can :index, Post
       can :show, Post
     # Admin
@@ -16,6 +17,7 @@ class Ability
       can :manage, :all
     # Moderator, comments
     elsif user.role == "moderator"
+      can :index, Download
       can :index, Post
       can :show, Post
       can :create, Comment
@@ -23,6 +25,7 @@ class Ability
       can :destroy, Comment
     # Normal Login
     elsif user.role == "registered"
+      can :index, Download
       can :index, Post
       can :show, Post
       can :create, Comment

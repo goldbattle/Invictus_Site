@@ -6,8 +6,10 @@ InvictusSiteV2::Application.routes.draw do
   match '/revisions/web', to: 'static_pages#git_revisions_web', via: 'get'
   match '/revisions/vanilla', to: 'static_pages#git_revisions_vanilla', via: 'get'
   match '/revisions/modded', to: 'static_pages#git_revisions_modded', via: 'get'
-  match '/downloads', to: 'static_pages#index_downloads', via: 'get'
+  # match '/downloads', to: 'static_pages#index_downloads', via: 'get'
   match '/about', to: 'static_pages#index_about', via: 'get'
+  # Downloads
+  resources :downloads, only: [:index, :new, :edit, :update, :create, :destroy]
   # Devise
   devise_for :users
   # Users

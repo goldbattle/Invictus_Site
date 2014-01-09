@@ -1,0 +1,81 @@
+<% provide(:title, 'Downloads') %>
+
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="page-header">
+    <h2>Invictus Downloads
+    <% if can? :create, Download %>
+        <div class="pull-right">
+          <%= link_to("New Download", new_download_path, :class=> "btn btn-primary") %>
+        </div>
+      <% end %>
+    </h2>
+  </div>
+
+  <%= render "shared/flash" %>
+
+  <% if can? :edit, Download %>
+
+    <!-- Main Content -->
+    <% @download_all.each do |download| %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-right" style="margin:5px;">
+
+            <!--Information-->
+            <%= download.title %>
+            <!--Weight-->
+            <span class="badge">
+              <%= download.weight_id %>
+            </span>
+            <!--Tags-->
+            <% if download.is_public? %>
+              <span class="label label-info">Public</span>
+            <% else %>
+              <span class="label label-default">Public</span>
+            <% end %>
+            <% if download.is_private? %>
+              <span class="label label-info">Login</span>
+            <% else %>
+              <span class="label label-default">Login</span>
+            <% end %>
+            <!--Actions-->
+            <div class="btn-group">
+              <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+                Actions
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Edit", edit_download_path(download) %></li>
+                <li><%= link_to 'Delete', download_path(download), data: { confirm: "You sure?" },  :method => :delete %></li>
+              </ul>
+            </div>
+            <br>
+
+          </div>
+          <div style="block:inline;">
+            <%= raw(download.content) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  <% elsif signed_in? %>
+
+    <!-- Main Content -->
+    <% @download_private.each do |download| %>
+      <%= raw(download.content) %>
+    <% end %>
+
+  <% else %>
+
+    <!-- Main Content -->
+    <% @download_public.each do |download| %>
+      <%= raw(download.content) %>
+    <% end %>
+
+  <% end %>
+
+</div>
+
+<%= render 'shared/footer' %>

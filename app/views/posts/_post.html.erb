@@ -41,7 +41,7 @@
     <!-- Timestamps -->
     <p style="color:#7a8288;">
       <%= post.created_at.getlocal.strftime("Created %m/%d/%Y at %I:%M %P") %>
-      <% if can? :edit, Post && post.view_count %>
+      <% if can? :edit, Post %>
         <span class="label label-default">
           <span class="glyphicon glyphicon-flash"></span>
           <%= post.view_count %>
