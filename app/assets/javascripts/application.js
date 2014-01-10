@@ -23,7 +23,9 @@
 //= require showdown
 //= require jasny-bootstrap
 
-// Highlights on buttons
 $(document).ready(function() {
+  // Highlights on buttons
   $('input').tooltip();
+  // Popup Tooltip
+  $('.popuptooltip').tooltip()
 });

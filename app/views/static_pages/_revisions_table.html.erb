@@ -46,7 +46,7 @@
         <% end %>
       </td>
       <td>
-        <span class="commitdate" data-toggle="tooltip" title="<%= Time.parse(item['commit']['author']['date']).getlocal.strftime("%m/%d/%Y at %I:%M %P") %>">
+        <span class="popuptooltip" data-toggle="tooltip" data-placement="left" title="<%= Time.parse(item['commit']['author']['date']).getlocal.strftime("%m/%d/%Y at %I:%M %P") %>">
           <%= time_ago_in_words(Time.parse(item['commit']['author']['date']).getlocal) %> ago
         </span>
       </td>

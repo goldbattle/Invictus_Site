@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-InvictusSiteV2::Application.load_tasks
+Invictus::Application.load_tasks

@@ -20,10 +20,9 @@
         <th>Actions</th>
         <th>Role</th>
         <th>Logins</th>
-        <th>Login Last</th>
         <th>Last IP</th>
         <th>Email</th>
-        <th>Date Updated</th>
+        <th>Login Last</th>
         <th>Date Created</th>
       </tr>
     </thead>
@@ -36,11 +35,18 @@
           <td><%= link_to "Edit", edit_user_path(user), class: "btn btn-sm" %></td>
           <td><%= user.role %></td>
           <td><%= user.sign_in_count %></td>
-          <td><%= user.current_sign_in_at.getlocal.strftime("%m/%d/%Y %H:%M") if user.current_sign_in_at %></td>
           <td><%= user.current_sign_in_ip %></td>
           <td><%= user.is_subscribed %></td>
-          <td><%= user.updated_at.getlocal.strftime("%m/%d/%Y %H:%M") if user.updated_at %></td>
-          <td><%= user.created_at.getlocal.strftime("%m/%d/%Y %H:%M") if user.created_at %></td>
+          <td>
+            <span class="popuptooltip" data-toggle="tooltip" data-placement="top" title="<%= time_ago_in_words(user.current_sign_in_at.getlocal) if user.current_sign_in_at %> ago">
+              <%= user.current_sign_in_at.getlocal.strftime("%m/%d/%Y %H:%M") if user.current_sign_in_at %>
+            </span>
+          </td>
+          <td>
+            <span class="popuptooltip" data-toggle="tooltip" data-placement="top" title="<%= time_ago_in_words(user.created_at.getlocal) if user.created_at %> ago">
+              <%= user.created_at.getlocal.strftime("%m/%d/%Y %H:%M") if user.created_at %>
+            </span>
+          </td>
           </li>
         </tr>
       <% end %>
