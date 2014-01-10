@@ -3,7 +3,7 @@ APP_CONFIG = YAML.load_file(Rails.root+"config/config.yml")[Rails.env]
 
 # Configure Email
 if Rails.env != 'test'
-  InvictusSiteV2::Application.configure do
+  Invictus::Application.configure do
     config.action_mailer.delivery_method = :smtp
     # Configure from the yaml
     config.action_mailer.smtp_settings = {

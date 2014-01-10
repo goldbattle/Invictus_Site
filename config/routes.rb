@@ -1,4 +1,4 @@
-InvictusSiteV2::Application.routes.draw do
+Invictus::Application.routes.draw do
   # Main welcome index
   root 'static_pages#index_main', via: 'get'
   # Static Pages
