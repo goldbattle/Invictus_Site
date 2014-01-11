@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>Invictus | Home</title>
+  <link href="assets/css/bootstrap-theme.css" media="all" rel="stylesheet">
+  <link href="assets/css/jquery.countdown.css" rel="stylesheet" type="text/css" > 
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.countdown.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      // Date in GMT Time
+      var uptime = new Date(2014,0,11,0,0,0,0);
+      // Append to div
+      $('#count').countdown({until: uptime});
+    });
+  </script>
+</head>
+<body>
+  <!--NavBar-->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Non-collapse info -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle Nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">Invictus Graphics</a>
+      </div>
+    </div><!-- /.container -->
+  </nav>
+  <!--Main Body-->
+  <div class="container" style="padding-top:50px">
+    <div class="page-header">
+      <h2></h2>
+    </div>
+    <div class="jumbotron" style="text-align:center;">
+      <h1>Website Maintenance</h1>
+      <p>Currently invictus-hd.com is down for maintenance. Please check back later.</p>
+      <div id="count"></div>  
+    </div>
+  </div>
+  <!--Footer-->
+  <div class="container" style="padding-bottom:10px">
+    <hr>
+    <footer>
+      <div class="pull-left">
+        <p>Copyright Invictus Textures</p>
+      </div>
+      <div class="pull-right">
+        <a href="mailto:support@invictus-hd.com">Contact Us</a>      
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
