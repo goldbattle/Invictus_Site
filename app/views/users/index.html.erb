@@ -32,7 +32,10 @@
           <td><%= gravatar_for user, size: 25 %></td>
           <td><%= user.username %></td>
           <td><%= user.email %></td>
-          <td><%= link_to "Edit", edit_user_path(user), class: "btn btn-sm" %></td>
+          <td>
+            <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm" %>
+            <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm" %>
+          </td>
           <td><%= user.role %></td>
           <td><%= user.sign_in_count %></td>
           <td><%= user.current_sign_in_ip %></td>
