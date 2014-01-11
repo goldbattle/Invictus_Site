@@ -6,8 +6,8 @@
 ###############################################
 # Constants
 ###############################################
-DIR_REPO='Invictus_Site_v2/'
-URL_REPO='https://github.com/goldbattle/Invictus_Site_v2.git'
+DIR_REPO='Invictus_Site/'
+URL_REPO='https://github.com/goldbattle/Invictus_Site.git'
 
 ###############################################
 # Pull from github
