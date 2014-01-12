@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
   end
 
   def git_revisions_vanilla
-    http_url = "https://api.github.com/repos/goldbattle/Invictus_Textures/commits"
+    http_url = "https://api.github.com/repos/InvictusGraphics/Invictus_Textures/commits"
     @data = http_catch(http_url,'vanilla')
   end
   
