@@ -9,7 +9,7 @@ TIME=`date +%H.%M.%S`
 # Set directory and names
 FILENAME="backup-$YEAR-$MONTH-$DAY-$TIME.tar.gz"
 SRCDIR="/web_apps/Invictus_Site"
-BKDIR="/web_apps/backups/$YEAR"
+BKDIR="/web_apps/backups/$YEAR/$MONTH"
 
 # Make the dir if needed
 if [ ! -d "$BKDIR" ]; then
