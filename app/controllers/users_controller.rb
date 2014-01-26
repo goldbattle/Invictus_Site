@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index
     # Main content
     @users_all = User.all.order("created_at DESC")
-    @users = User.paginate(:page => params[:page], :per_page => 15).order('created_at DESC')
+    @users = User.paginate(:page => params[:page], :per_page => 100).order('created_at DESC')
   end
 
   # Edit user profile
