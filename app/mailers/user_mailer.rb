@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   default from: "Invictus Graphics <noreply@invictus-hd.com>"
 
-  #UserMailer.subscription_email("Blog Update ##{Post.first.id}", User.first, Post.first).deliver
+  #UserMailer.subscription_email("Invictus:{Post.first.id}", User.first, Post.first).deliver
   
   def subscription_email(subject,user,post)
     # Variable for view
