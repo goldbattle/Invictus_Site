@@ -74,6 +74,8 @@
         <div class="pull-right form-inline">
         <%= f.input :is_visible, :collection => [['Post Visible', true], ['Post Hidden', false]], :include_blank => false, label: false %>
         <%= f.submit "Submit", class: "btn btn-large btn-success", :data => { disable_with: 'Saving' } %>
+        <br>
+        <%= f.input :is_mail_sent, :collection => [['Mail Sent', true], ['Not Sent', false]], :include_blank => false, label: false %>
         </div>
       </div>
     </div>
